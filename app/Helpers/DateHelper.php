@@ -10,7 +10,9 @@ use DateTime;
 
 class DateHelper
 {
-    public static function format_date($date, $input_format = 'd/m/Y', $output_format = 'Y-m-d')
+    const INPUT_DATE_FORMAT = 'd/m/Y';
+
+    public static function format_date($date, $input_format = self::INPUT_DATE_FORMAT, $output_format = 'Y-m-d')
     {
         $formatted_date = \DateTime::createFromFormat($input_format, $date);
 
@@ -179,7 +181,7 @@ class DateHelper
         return date($format, $millisecond / 1000);
     }
 
-    public static function get_interval_between_dates($start = 'd/m/Y', $end = 'd/m/Y')
+    public static function get_interval_between_dates($start = self::INPUT_DATE_FORMAT, $end = self::INPUT_DATE_FORMAT)
     {
         $start = DateHelper::format_date($start);
         $end = DateHelper::format_date($end);
@@ -221,7 +223,7 @@ class DateHelper
         return $weeks;
     }
 
-    public static function getWeekDateRange($date, $weekNumber, $dateFormat = 'd/m/Y')
+    public static function getWeekDateRange($date, $weekNumber, $dateFormat = self::INPUT_DATE_FORMAT)
     {
         // Convert input date to a DateTime object
         $startDate = new DateTime($date);
